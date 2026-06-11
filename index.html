@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="es" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camilo Lavado</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { 
+            montserrat: ['Montserrat', 'sans-serif'],
+            inter: ['Inter', 'sans-serif']
+          },
+          colors: {
+            dark: '#121212',
+            surface: '#1a1a1a',
+            electric: '#00D2FF',
+            electricLight: '#00E5FF'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    * { scroll-behavior: smooth; }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .hero-gradient { background: radial-gradient(ellipse at 50% 0%, rgba(37,99,255,0.15) 0%, transparent 60%), linear-gradient(180deg, #0a0a0f 0%, #101018 100%); }
+    .card-glow:hover { box-shadow: 0 0 30px rgba(37,99,255,0.1); }
+    .float-btn { animation: floatPulse 2s ease-in-out infinite; }
+    @keyframes floatPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    /* Parallax Background */
+    .parallax-section { position: relative; overflow: hidden; }
+    .parallax-bg { position: absolute; top: 0; left: 0; width: 100%; height: 120%; background: radial-gradient(ellipse at 50% 0%, rgba(0,210,255,0.08) 0%, transparent 60%); will-change: transform; }
+    /* Before/After Slider */
+    .before-after-container { position: relative; width: 100%; max-width: 600px; margin: 0 auto; overflow: hidden; border-radius: 1.5rem; box-shadow: 0 10px 40px rgba(0,210,255,0.15); }
+    .before-after-wrapper { position: relative; width: 100%; padding-bottom: 66.67%; }
+    .before-after-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .before-img { background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); }
+    .after-img { background: linear-gradient(135deg, #0d7a7f 0%, #00d2ff 100%); }
+    .before-after-slider { position: absolute; top: 0; left: 50%; width: 4px; height: 100%; background: #00d2ff; cursor: col-resize; transform: translateX(-50%); z-index: 10; }
+    .before-after-handle { position: absolute; top: 50%; left: 0; transform: translateY(-50%); width: 60px; height: 60px; background: #00d2ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-left: -30px; box-shadow: 0 4px 15px rgba(0,210,255,0.4); }
+    .before-after-handle i { color: #121212; width: 24px; height: 24px; }
+    /* Tabs */
+    .tab-button { position: relative; padding: 12px 24px; font-weight: 600; border: none; background: transparent; color: #a0a0a0; cursor: pointer; transition: color 0.3s ease; font-size: 1rem; }
+    .tab-button.active { color: #00d2ff; }
+    .tab-button.active::after { content: ''; position: absolute; bottom: -8px; left: 0; right: 0; height: 3px; background: #00d2ff; border-radius: 2px; }
+    .tab-content { display: none; animation: fadeIn 0.3s ease; }
+    .tab-content.active { display: grid; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="h-full overflow-auto bg-dark font-inter text-white"><!-- Floating WhatsApp Button --> <a id="floatingWhatsapp" href="https://w.app/mayndq" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-electric hover:bg-electricLight text-dark font-semibold px-5 py-3.5 rounded-full shadow-lg shadow-electric/30 float-btn transition-colors">
+   <svg width="20" height="20" viewbox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" /><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.553 4.12 1.52 5.853L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-1.875 0-3.63-.5-5.14-1.373l-.37-.218-3.82.998 1.018-3.715-.24-.38A9.69 9.69 0 012.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75z" />
+   </svg><span id="floatingCta">Reservar por WhatsApp</span> </a><!-- Hero -->
+  <section class="parallax-section hero-gradient relative min-h-[90%] flex items-center justify-center px-6 py-20">
+   <div class="parallax-bg" id="parallaxBg"></div>
+   <div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect fill=%22none%22 stroke=%22%23ffffff08%22 stroke-width=%220.5%22 width=%2260%22 height=%2260%22/></svg>');"></div>
+   <div class="relative text-center max-w-4xl mx-auto fade-in">
+    <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-8 text-sm text-white/70"><span class="w-2 h-2 bg-electric rounded-full"></span> Barcelona &amp; Alrededores
+    </div>
+    <h1 id="heroTitle" class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6 font-montserrat">Detallado de Coches Premium<br><span class="text-electric">a Domicilio</span></h1>
+    <p id="heroSubtitle" class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10">Llevamos el concesionario a tu puerta. Sin agua, sin luz, sin complicaciones. Solo resultados impecables.</p><a id="heroCta" href="https://w.app/mayndq" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-electric hover:bg-electricLight text-dark font-semibold px-8 py-4 rounded-full text-lg transition-all shadow-lg shadow-electric/20 hover:shadow-electric/40"> <span id="heroCtaText">Reservar Ahora</span> <i data-lucide="arrow-right" class="w-5 h-5"></i> </a>
+   </div>
+  </section><!-- Propuesta de Valor -->
+  <section class="px-6 py-20 max-w-6xl mx-auto">
+   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="fade-in bg-surface border border-white/5 rounded-2xl p-8 text-center card-glow transition-all">
+     <div class="w-14 h-14 bg-electric/10 rounded-xl flex items-center justify-center mx-auto mb-5">
+      <i data-lucide="home" class="w-7 h-7 text-electric"></i>
+     </div>
+     <h3 class="font-semibold text-lg mb-2">Servicio a Domicilio</h3>
+     <p class="text-white/50 text-sm">Vamos a tu hogar, oficina o parking. Tú sigues con tu día.</p>
+    </div>
+    <div class="fade-in bg-surface border border-white/5 rounded-2xl p-8 text-center card-glow transition-all" style="transition-delay:0.1s">
+     <div class="w-14 h-14 bg-electric/10 rounded-xl flex items-center justify-center mx-auto mb-5">
+      <i data-lucide="droplets" class="w-7 h-7 text-electric"></i>
+     </div>
+     <h3 class="font-semibold text-lg mb-2">Sin Agua Ni Luz</h3>
+     <p class="text-white/50 text-sm">Tecnología waterless profesional. No necesitamos tus suministros.</p>
+    </div>
+    <div class="fade-in bg-surface border border-white/5 rounded-2xl p-8 text-center card-glow transition-all" style="transition-delay:0.2s">
+     <div class="w-14 h-14 bg-electric/10 rounded-xl flex items-center justify-center mx-auto mb-5">
+      <i data-lucide="shield-check" class="w-7 h-7 text-electric"></i>
+     </div>
+     <h3 class="font-semibold text-lg mb-2">Productos Premium</h3>
+     <p class="text-white/50 text-sm">Solo usamos productos de gama alta que cuidan tu vehículo.</p>
+    </div>
+   </div>
+  </section><!-- Antes y Después -->
+  <section class="px-6 py-20 max-w-6xl mx-auto">
+   <div class="text-center mb-14 fade-in">
+    <h2 class="text-3xl md:text-5xl font-bold mb-4 font-montserrat">Antes y Después</h2>
+    <p class="text-gray-400 text-lg">Desliza para ver la transformación real de nuestros trabajos</p>
+   </div>
+   <div class="flex justify-center fade-in">
+    <div class="before-after-container">
+     <div class="before-after-wrapper">
+      <div class="before-after-img before-img flex items-center justify-center">
+       <div class="text-center"><i data-lucide="image-off" class="w-12 h-12 text-gray-500 mx-auto mb-2"></i>
+        <p class="text-gray-400 text-sm">ANTES</p>
+       </div>
+      </div>
+      <div class="before-after-img after-img flex items-center justify-center">
+       <div class="text-center"><i data-lucide="sparkles" class="w-12 h-12 text-electric mx-auto mb-2"></i>
+        <p class="text-white text-sm">DESPUÉS</p>
+       </div>
+      </div>
+      <div class="before-after-slider" id="beaSlider">
+       <div class="before-after-handle"><i data-lucide="chevron-left"></i> <i data-lucide="chevron-right"></i>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Servicios con Pestañas -->
+  <section class="px-6 py-20 max-w-6xl mx-auto">
+   <div class="text-center mb-14 fade-in">
+    <h2 class="text-3xl md:text-5xl font-bold mb-4 font-montserrat">Nuestros Servicios</h2>
+    <p class="text-gray-400 text-lg">Elige el nivel de cuidado que merece tu vehículo</p>
+   </div><!-- Tabs -->
+   <div class="flex flex-wrap justify-center gap-2 mb-10 border-b border-white/10 pb-4"><button class="tab-button active" data-tab="interior">Interior</button> <button class="tab-button" data-tab="exterior">Exterior</button> <button class="tab-button" data-tab="premium">Tratamientos Premium</button>
+   </div><!-- Interior Tab -->
+   <div id="interior" class="tab-content active grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="fade-in bg-surface border border-white/5 rounded-2xl p-7 card-glow transition-all flex flex-col">
+     <div class="text-electric font-medium text-sm mb-3 uppercase tracking-wider">
+      Interior
+     </div>
+     <h3 class="text-xl font-bold mb-3">Limpieza Interior Básica</h3>
+     <p class="text-gray-400 text-sm mb-5 flex-1">Aspirado profundo, limpieza de salpicadero y cristales interiores.</p>
+     <div class="text-2xl font-bold">
+      50€
+     </div>
+    </div>
+    <div class="fade-in bg-surface border border-white/5 rounded-2xl p-7 card-glow transition-all flex flex-col" style="transition-delay:0.1s">
+     <div class="text-electric font-medium text-sm mb-3 uppercase tracking-wider">
+      Interior
+     </div>
+     <h3 class="text-xl font-bold mb-3">Limpieza Interior Premium</h3>
+     <p class="text-gray-400 text-sm mb-5 flex-1">Aspirado profundo + acondicionamiento de todas las superficies interiores.</p>
+     <div class="text-2xl font-bold">
+      80€
+     </div>
+    </div>
+    <div class="fade-in bg-surface border border-white/5 rounded-2xl p-7 card-glow transition-all flex flex-col" style="transition-delay:0.2s">
+     <div class="text-electric font-medium text-sm mb-3 uppercase tracking-wider">
+      Interior
+     </div>
+     <h3 class="text-xl font-bold mb-3">Higienización Total</h3>
+     <p class="text-gray-400 text-sm mb-5 flex-1">Limpieza + tratamiento ozono + aroma profesional.</p>
+     <div class="text-2xl font-bold">
+      95€
+     </div>
+    </div>
+   </div><!-- Exterior Tab -->
+   <div id="exterior" class="tab-content grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="fade-in bg-surface border border-white/5 rounded-2xl p-7 card-glow transition-all flex flex-col">
+     <div class="text-electric font-medium text-sm mb-3 uppercase tracking-wider">
+      Exterior
+     </div>
+     <h3 class="text-xl font-bold mb-3">Lavado Sin Agua</h3>
+     <p class="text-gray-400 text-sm mb-5 flex-1">Lavado ecológico sin agua, sellado rápido y brillo intenso.</p>
+     <div class="text-2xl font-bold">
+      40€
+     </div>
+    </div>
+    <div class="fade-in bg-surface border border-white/5 rounded-2xl p-7 card-glow transition-all flex flex-col" style="transition-delay:0.1s">
+     <div class="text-electric font-medium text-sm mb-3 uppercase tracking-wider">
+      Exterior
+     </div>
+     <h3 class="text-xl font-bold mb-3">Lavado + Descontaminación</h3>
+     <p class="text-gray-400 text-sm mb-5 flex-1">Lavado profundo + eliminación de contaminantes y tarquines.</p>
+     <div class="text-2xl font-bold">
+      70€
+     </div>
+    </div>
+    <div class="fade-in bg-surface border border-white/5 rounded-2xl p-7 card-glow transition-all flex flex-col" style="transition-delay:0.2s">
+     <div class="text-electric font-medium text-sm mb-3 uppercase tracking-wider">
+      Exterior
+     </div>
+     <h3 class="text-xl font-bold mb-3">Detallado Llantas Premium</h3>
+     <p class="text-gray-400 text-sm mb-5 flex-1">Limpieza y protección profesional de llantas y neumáticos.</p>
+     <div class="text-2xl font-bold">
+      35€
+     </div>
+    </div>
+   </div><!-- Premium Tab -->
+   <div id="premium" class="tab-content grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="fade-in bg-surface border border-white/5 rounded-2xl p-7 card-glow transition-all flex flex-col relative overflow-hidden">
+     <div class="absolute top-4 right-4 bg-electric text-xs font-bold px-3 py-1 rounded-full">
+      COMPLETO
+     </div>
+     <div class="text-electric font-medium text-sm mb-3 uppercase tracking-wider">
+      Completo
+     </div>
+     <h3 class="text-xl font-bold mb-3">Detailing Integral</h3>
+     <p class="text-gray-400 text-sm mb-5 flex-1">Interior + Exterior. El cuidado integral que tu coche necesita.</p>
+     <div class="text-2xl font-bold">
+      80€ – 140€
+     </div>
+    </div>
+    <div class="fade-in bg-surface border border-white/5 rounded-2xl p-7 card-glow transition-all flex flex-col" style="transition-delay:0.1s">
+     <div class="text-electric font-medium text-sm mb-3 uppercase tracking-wider">
+      Corrección
+     </div>
+     <h3 class="text-xl font-bold mb-3">Pulido de Pintura</h3>
+     <p class="text-gray-400 text-sm mb-5 flex-1">Eliminación de marcas, swirls y micro-arañazos profesionalmente.</p>
+     <div class="text-2xl font-bold">
+      150€ – 300€
+     </div>
+    </div>
+    <div class="fade-in bg-surface border border-white/5 rounded-2xl p-7 card-glow transition-all flex flex-col" style="transition-delay:0.2s">
+     <div class="text-electric font-medium text-sm mb-3 uppercase tracking-wider">
+      Protección
+     </div>
+     <h3 class="text-xl font-bold mb-3">Tratamiento Cerámico</h3>
+     <p class="text-gray-400 text-sm mb-5 flex-1">Capa cerámica avanzada con hidrofobicidad extrema y durabilidad superior.</p>
+     <div class="text-2xl font-bold">
+      250€ – 500€
+     </div>
+    </div>
+   </div>
+   <p class="text-center text-white/40 text-sm mt-8">*Precios orientativos según tamaño y estado del vehículo</p>
+  </section><!-- Extras -->
+  <section class="px-6 py-20">
+   <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-14 fade-in">
+     <h2 class="text-3xl md:text-5xl font-bold mb-4 font-montserrat">Extras</h2>
+     <p class="text-gray-400 text-lg">Personaliza tu servicio con complementos</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 fade-in">
+     <div class="flex items-center gap-4 bg-surface border border-white/5 rounded-xl px-6 py-4">
+      <i data-lucide="dog" class="w-5 h-5 text-electric flex-shrink-0"></i><span class="text-gray-300">Eliminación de pelos de mascota</span><span class="ml-auto text-electric font-semibold">+20€</span>
+     </div>
+     <div class="flex items-center gap-4 bg-surface border border-white/5 rounded-xl px-6 py-4">
+      <i data-lucide="armchair" class="w-5 h-5 text-electric flex-shrink-0"></i><span class="text-gray-300">Tratamiento de cuero</span><span class="ml-auto text-electric font-semibold">+25€</span>
+     </div>
+     <div class="flex items-center gap-4 bg-surface border border-white/5 rounded-xl px-6 py-4">
+      <i data-lucide="wind" class="w-5 h-5 text-electric flex-shrink-0"></i><span class="text-gray-300">Ozono desinfectante</span><span class="ml-auto text-electric font-semibold">+15€</span>
+     </div>
+     <div class="flex items-center gap-4 bg-surface border border-white/5 rounded-xl px-6 py-4">
+      <i data-lucide="disc" class="w-5 h-5 text-electric flex-shrink-0"></i><span class="text-gray-300">Limpieza de llantas premium</span><span class="ml-auto text-electric font-semibold">+15€</span>
+     </div>
+     <div class="flex items-center gap-4 bg-surface border border-white/5 rounded-xl px-6 py-4">
+      <i data-lucide="sun" class="w-5 h-5 text-electric flex-shrink-0"></i><span class="text-gray-300">Restauración de faros</span><span class="ml-auto text-electric font-semibold">+30€</span>
+     </div>
+     <div class="flex items-center gap-4 bg-surface border border-white/5 rounded-xl px-6 py-4">
+      <i data-lucide="car" class="w-5 h-5 text-electric flex-shrink-0"></i><span class="text-gray-300">Motor detailing</span><span class="ml-auto text-electric font-semibold">+35€</span>
+     </div>
+    </div>
+   </div>
+  </section><!-- Filosofía -->
+  <section class="px-6 py-20 max-w-6xl mx-auto">
+   <div class="text-center mb-14 fade-in">
+    <h2 class="text-3xl md:text-5xl font-bold mb-4 font-montserrat">Nuestra Filosofía</h2>
+   </div>
+   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="fade-in text-center p-8">
+     <div class="w-20 h-20 bg-electric/10 border border-electric/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+      <i data-lucide="sparkles" class="w-9 h-9 text-electric"></i>
+     </div>
+     <h3 class="text-2xl font-bold mb-3">Limpiar</h3>
+     <p class="text-gray-400">Eliminamos cada impureza con técnicas y productos de máxima calidad.</p>
+    </div>
+    <div class="fade-in text-center p-8" style="transition-delay:0.1s">
+     <div class="w-20 h-20 bg-electric/10 border border-electric/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+      <i data-lucide="rotate-ccw" class="w-9 h-9 text-electric"></i>
+     </div>
+     <h3 class="text-2xl font-bold mb-3">Restaurar</h3>
+     <p class="text-gray-400">Devolvemos cada superficie a su estado original de fábrica.</p>
+    </div>
+    <div class="fade-in text-center p-8" style="transition-delay:0.2s">
+     <div class="w-20 h-20 bg-electric/10 border border-electric/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+      <i data-lucide="shield" class="w-9 h-9 text-electric"></i>
+     </div>
+     <h3 class="text-2xl font-bold mb-3">Proteger</h3>
+     <p class="text-gray-400">Sellamos y protegemos para mantener la perfección durante meses.</p>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="border-t border-white/5 px-6 py-16">
+   <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+    <div>
+     <h4 id="footerBrand" class="text-2xl font-bold mb-4">Camilo Lavado<span class="text-electric">.</span></h4>
+     <p class="text-white/50 text-sm">Detailing premium a domicilio en Barcelona. Cuidamos tu vehículo como si fuera nuestro.</p>
+    </div>
+    <div>
+     <h5 class="font-semibold mb-4 text-white/80">Zonas de Servicio</h5>
+     <ul class="text-white/50 text-sm space-y-2">
+      <li>Barcelona Ciudad</li>
+      <li>Sant Cugat del Vallès</li>
+      <li>Castelldefels</li>
+      <li>Sitges</li>
+      <li>Badalona &amp; Área Metropolitana</li>
+     </ul>
+    </div>
+    <div>
+     <h5 class="font-semibold mb-4 text-white/80">Contacto</h5>
+     <ul class="text-white/50 text-sm space-y-2">
+      <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-electric"></i> +34 697 217 781</li>
+      <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-electric"></i> info@camilolavado.com</li>
+      <li class="flex items-center gap-2"><i data-lucide="instagram" class="w-4 h-4 text-electric"></i> @camilolavado</li>
+     </ul>
+    </div>
+   </div>
+   <div class="max-w-6xl mx-auto mt-12 pt-8 border-t border-white/5 text-center text-white/30 text-sm">
+    © 2024 Camilo Lavado. Todos los derechos reservados.
+   </div>
+  </footer>
+  <script>
+    // Parallax effect
+    window.addEventListener('scroll', () => {
+      const parallaxBg = document.getElementById('parallaxBg');
+      if (parallaxBg) {
+        const scrollY = window.scrollY;
+        parallaxBg.style.transform = `translateY(${scrollY * 0.5}px)`;
+      }
+    });
+
+    // Before/After Slider
+    const beaSlider = document.getElementById('beaSlider');
+    const beaContainer = document.querySelector('.before-after-container');
+    let isDown = false;
+
+    beaSlider.addEventListener('mousedown', () => isDown = true);
+    document.addEventListener('mouseup', () => isDown = false);
+    document.addEventListener('mousemove', (e) => {
+      if (!isDown || !beaContainer) return;
+      const rect = beaContainer.getBoundingClientRect();
+      const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+      const percentage = (x / rect.width) * 100;
+      beaSlider.style.left = percentage + '%';
+      document.querySelector('.before-img').style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+    });
+
+    // Tab functionality
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const tabName = button.dataset.tab;
+        document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        button.classList.add('active');
+        document.getElementById(tabName).classList.add('active');
+      });
+    });
+
+    // Config
+    const defaultConfig = {
+      hero_title: 'Detallado de Coches Premium<br><span class="text-electric">a Domicilio</span>',
+      hero_subtitle: 'Llevamos el concesionario a tu puerta. Sin agua, sin luz, sin complicaciones. Solo resultados impecables.',
+      cta_text: 'Reservar Ahora',
+      whatsapp_number: '34697217781',
+      company_name: 'Camilo Lavado',
+      background_color: '#121212',
+      surface_color: '#1a1a1a',
+      text_color: '#ffffff',
+      primary_action_color: '#00D2FF',
+      secondary_action_color: '#00E5FF',
+      font_family: 'Montserrat',
+      font_size: 16
+    };
+
+    function applyConfig(config) {
+      document.getElementById('heroTitle').innerHTML = config.hero_title || defaultConfig.hero_title;
+      document.getElementById('heroSubtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      document.getElementById('heroCtaText').textContent = config.cta_text || defaultConfig.cta_text;
+      document.getElementById('footerBrand').innerHTML = (config.company_name || defaultConfig.company_name) + '<span class="text-electric">.</span>';
+      
+      const waNum = config.whatsapp_number || defaultConfig.whatsapp_number;
+      const waHref = (typeof waNum === 'string' && (waNum.startsWith('http://') || waNum.startsWith('https://'))) ? waNum : `https://wa.me/${waNum}`;
+      document.getElementById('heroCta').href = waHref;
+      document.getElementById('floatingWhatsapp').href = waHref;
+
+      // Colors
+      const bg = config.background_color || defaultConfig.background_color;
+      const surface = config.surface_color || defaultConfig.surface_color;
+      const text = config.text_color || defaultConfig.text_color;
+      const primary = config.primary_action_color || defaultConfig.primary_action_color;
+
+      document.body.style.backgroundColor = bg;
+      document.body.style.color = text;
+      document.querySelectorAll('.bg-surface').forEach(el => el.style.backgroundColor = surface);
+      document.querySelectorAll('button.bg-electric, .bg-electric').forEach(el => el.style.backgroundColor = primary);
+      document.getElementById('heroCta').style.backgroundColor = primary;
+      document.getElementById('floatingWhatsapp').style.backgroundColor = primary;
+
+      // Font
+      const font = config.font_family || defaultConfig.font_family;
+      document.body.style.fontFamily = `${font}, sans-serif`;
+      const size = config.font_size || defaultConfig.font_size;
+      document.body.style.fontSize = `${size}px`;
+    }
+
+    // Apply default config on page load
+    applyConfig(defaultConfig);
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    lucide.createIcons();
+  </script>
+ </body>
+</html>
+</html>
