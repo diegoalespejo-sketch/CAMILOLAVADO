@@ -58,11 +58,11 @@
  </head>
  <body class="h-full overflow-auto bg-dark font-inter text-white">
   <!-- Site Header -->
-  <header class="fixed top-0 left-0 w-full z-40 bg-dark/80 backdrop-blur-md border-b border-white/5">
+  <header id="siteHeader" class="fixed top-0 left-0 w-full z-40 bg-dark/80 backdrop-blur-md border-b border-white/5 transition-transform duration-300 ease-in-out">
    <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
     <div class="flex items-center gap-3">
-     <div class="w-36 h-10 bg-white/5 rounded flex items-center justify-center overflow-hidden">
-      <img id="siteLogo" src="logo.png" alt="Logo" class="max-h-8 object-contain" />
+     <div class="w-[768px] h-56 bg-white/5 rounded flex items-center justify-center overflow-hidden">
+      <img id="siteLogo" src="logo marca.jpeg" alt="Logo" class="max-h-48 object-contain" />
      </div>
     </div>
     <nav class="hidden md:flex gap-4 items-center">
@@ -70,8 +70,7 @@
      <a href="#antes-despues" class="text-white/80 hover:text-white font-semibold">RESULTADOS</a>
      <a href="#filosofia" class="text-white/80 hover:text-white font-semibold">NOSOTROS</a>
      <a href="#redes" class="text-white/80 hover:text-white font-semibold">REDES</a>
-     <a id="headerWhatsapp" href="https://w.app/mayndq" target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-white font-semibold">WHATSAPP</a>
-     <a href="#hero" class="bg-electric text-dark font-semibold px-4 py-2 rounded-full">RESERVAR</a>
+     <a id="headerWhatsapp" href="https://wa.link/arr4os" target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-white font-semibold">WHATSAPP</a>
     </nav>
     <div class="md:hidden">
      <button id="mobileMenuBtn" class="p-2 bg-white/5 rounded"><i data-lucide="menu" class="w-5 h-5 text-white/80"></i></button>
@@ -83,13 +82,12 @@
      <a href="#antes-despues" class="text-white/80">RESULTADOS</a>
      <a href="#filosofia" class="text-white/80">NOSOTROS</a>
      <a href="#redes" class="text-white/80">REDES</a>
-     <a id="mobileHeaderWhatsapp" href="https://w.app/mayndq" class="text-white/80">WHATSAPP</a>
-     <a href="#hero" class="bg-electric text-dark font-semibold px-4 py-2 rounded-full inline-block">RESERVAR</a>
+     <a id="mobileHeaderWhatsapp" href="https://wa.link/arr4os" class="text-white/80">WHATSAPP</a>
     </div>
    </div>
   </header>
   <!-- Floating WhatsApp Button -->
-  <a id="floatingWhatsapp" href="https://w.app/mayndq" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-electric hover:bg-electricLight text-dark font-semibold px-5 py-3.5 rounded-full shadow-lg shadow-electric/30 float-btn transition-colors">
+  <a id="floatingWhatsapp" href="https://wa.link/arr4os" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-electric hover:bg-electricLight text-dark font-semibold px-5 py-3.5 rounded-full shadow-lg shadow-electric/30 float-btn transition-colors">
    <svg width="20" height="20" viewbox="0 0 24 24" fill="currentColor">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" /><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.553 4.12 1.52 5.853L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-1.875 0-3.63-.5-5.14-1.373l-.37-.218-3.82.998 1.018-3.715-.24-.38A9.69 9.69 0 012.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75z" />
    </svg><span id="floatingCta">Reservar por WhatsApp</span> </a><!-- Hero -->
@@ -102,7 +100,7 @@
     <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-8 text-sm text-white/70"><span class="w-2 h-2 bg-electric rounded-full"></span> Barcelona &amp; Alrededores
     </div>
     <h1 id="heroTitle" class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6 font-montserrat">Brillo supremo</h1>
-    <p id="heroSubtitle" class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10">Detailing profesional a domicilio en Barcelona y alrededores.</p><a id="heroCta" href="https://w.app/mayndq" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-electric hover:bg-electricLight text-dark font-semibold px-8 py-4 rounded-full text-lg transition-all shadow-lg shadow-electric/20 hover:shadow-electric/40"> <span id="heroCtaText">Reservar Ahora</span> <i data-lucide="arrow-right" class="w-5 h-5"></i> </a>
+    <p id="heroSubtitle" class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10">Detailing profesional a domicilio en Barcelona y alrededores.</p><a id="heroCta" href="https://wa.link/arr4os" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-electric hover:bg-electricLight text-dark font-semibold px-8 py-4 rounded-full text-lg transition-all shadow-lg shadow-electric/20 hover:shadow-electric/40"> <span id="heroCtaText">Reservar Ahora</span> <i data-lucide="arrow-right" class="w-5 h-5"></i> </a>
     <!-- hero image removed per request -->
    </div>
   </section><!-- Propuesta de Valor -->
@@ -116,12 +114,11 @@
      <p class="text-white/50 text-sm">Vamos a tu hogar, oficina o parking. Tú sigues con tu día.</p>
     </div>
     <div class="fade-in bg-surface border border-white/5 rounded-2xl p-8 text-center card-glow transition-all" style="transition-delay:0.1s">
-     <h3 class="font-semibold text-lg mb-4">Método brillo supremo</h3>
-     <ul class="text-white/50 text-sm mb-0 list-disc list-inside space-y-2">
-      <li>Limpiar</li>
-      <li>Restaurar</li>
-      <li>Proteger</li>
-     </ul>
+     <div class="w-14 h-14 bg-electric/10 rounded-xl flex items-center justify-center mx-auto mb-5">
+      <i data-lucide="zap" class="w-7 h-7 text-electric"></i>
+     </div>
+     <h3 class="font-semibold text-lg mb-2">Método Brillo Supremo</h3>
+     <p class="text-white/50 text-sm">Limpiar, Restaurar y Proteger. Tres pasos para la perfección absoluta de tu vehículo.</p>
     </div>
     <div class="fade-in bg-surface border border-white/5 rounded-2xl p-8 text-center card-glow transition-all" style="transition-delay:0.2s">
      <div class="w-14 h-14 bg-electric/10 rounded-xl flex items-center justify-center mx-auto mb-5">
@@ -208,7 +205,23 @@
       50€
      </div>
     </div>
-    
+    <div class="fade-in bg-surface border-2 border-electric rounded-2xl p-7 card-glow transition-all flex flex-col relative overflow-hidden shadow-lg shadow-electric/20" style="transition-delay:0.2s">
+     <div class="absolute top-4 right-4 bg-electric text-dark text-xs font-bold px-3 py-1 rounded-full">RECOMENDADO</div>
+     <div class="text-electric font-medium text-sm mb-3 uppercase tracking-wider">Interior</div>
+     <h3 class="text-xl font-bold mb-3">B&S INTERIOR + EXTERIOR</h3>
+     <p class="text-gray-400 text-sm mb-3">Duración: 2:30–3 horas</p>
+     <ul class="text-gray-300 text-sm mb-5 list-disc list-inside space-y-2">
+     <li>Incluye todo de B&S-exterior</li>
+     <li>Limpieza interior profunda</li>
+     <li>Aspirado completo</li>
+     <li>Plásticos interiores</li>
+     <li>Cristales interior y exterior</li>
+     <li>Acabado profesional</li>
+     </ul>
+     <div class="text-2xl font-bold">
+     75€
+     </div>
+    </div>
    </div><!-- Exterior Tab -->
   <div id="exterior" class="tab-content grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
    <div class="fade-in bg-surface border border-white/5 rounded-2xl p-7 card-glow transition-all flex flex-col">
@@ -226,24 +239,6 @@
     </ul>
     <div class="text-2xl font-bold">
     35€
-    </div>
-   </div>
-   <div class="fade-in bg-surface border border-white/5 rounded-2xl p-7 card-glow transition-all flex flex-col" style="transition-delay:0.1s">
-    <div class="text-electric font-medium text-sm mb-3 uppercase tracking-wider">
-    Exterior
-    </div>
-    <h3 class="text-xl font-bold mb-3">B&S INTERIOR + EXTERIOR</h3>
-    <p class="text-gray-400 text-sm mb-3">Duración: 2:30–3 horas</p>
-    <ul class="text-gray-300 text-sm mb-5 list-disc list-inside space-y-2">
-    <li>Incluye todo de B&S-exterior</li>
-    <li>Limpieza interior profunda</li>
-    <li>Aspirado completo</li>
-    <li>Plásticos interiores</li>
-    <li>Cristales interior y exterior</li>
-    <li>Acabado profesional</li>
-    </ul>
-    <div class="text-2xl font-bold">
-    75€
     </div>
    </div>
    </div><!-- Premium Tab -->
@@ -317,15 +312,11 @@
      <p class="text-gray-400">Síguenos en nuestras redes sociales</p>
     </div>
     <div class="flex justify-center gap-8 fade-in">
-     <a href="https://instagram.com/camilolavado" target="_blank" class="flex flex-col items-center gap-2">
+     <a href="https://www.instagram.com/bsd.detailing19?igsh=MXNxcmJ1YTkyMjlxMQ==" target="_blank" class="flex flex-col items-center gap-2">
       <i data-lucide="instagram" class="w-12 h-12 text-electric"></i>
       <span class="text-white/70">Instagram</span>
      </a>
-     <a href="https://facebook.com/camilolavado" target="_blank" class="flex flex-col items-center gap-2">
-      <i data-lucide="facebook" class="w-12 h-12 text-electric"></i>
-      <span class="text-white/70">Facebook</span>
-     </a>
-     <a href="https://www.tiktok.com/@camilolavado" target="_blank" class="flex flex-col items-center gap-2">
+     <a href="https://www.tiktok.com/@brillo.supremo.de?_r=1&_t=ZS-97LlvouM1a6" target="_blank" class="flex flex-col items-center gap-2">
       <svg class="w-12 h-12 text-electric" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M216 88.1a74.4 74.4 0 01-41.5-12.4v70.5a70.3 70.3 0 01-70.6 70.6A70.1 70.1 0 019.3 226.7V211a114.7 114.7 0 00105.5-115.3v-.9h22.6a74.6 74.6 0 004.6 93.3z"/></svg>
       <span class="text-white/70">TikTok</span>
      </a>
@@ -334,35 +325,13 @@
   <section class="px-6 py-20 max-w-6xl mx-auto">
    <div class="text-center mb-14 fade-in">
     <h2 id="filosofia" class="text-3xl md:text-5xl font-bold mb-4 font-montserrat">Nuestra Filosofía</h2>
-   </div>
-   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="fade-in text-center p-8">
-     <div class="w-20 h-20 bg-electric/10 border border-electric/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-      <i data-lucide="sparkles" class="w-9 h-9 text-electric"></i>
-     </div>
-     <h3 class="text-2xl font-bold mb-3">Limpiar</h3>
-     <p class="text-gray-400">Eliminamos cada impureza con técnicas y productos de máxima calidad.</p>
-    </div>
-    <div class="fade-in text-center p-8" style="transition-delay:0.1s">
-     <div class="w-20 h-20 bg-electric/10 border border-electric/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-      <i data-lucide="rotate-ccw" class="w-9 h-9 text-electric"></i>
-     </div>
-     <h3 class="text-2xl font-bold mb-3">Restaurar</h3>
-     <p class="text-gray-400">Devolvemos cada superficie a su estado original de fábrica.</p>
-    </div>
-    <div class="fade-in text-center p-8" style="transition-delay:0.2s">
-     <div class="w-20 h-20 bg-electric/10 border border-electric/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-      <i data-lucide="shield" class="w-9 h-9 text-electric"></i>
-     </div>
-     <h3 class="text-2xl font-bold mb-3">Proteger</h3>
-     <p class="text-gray-400">Sellamos y protegemos para mantener la perfección durante meses.</p>
-    </div>
+    <p class="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">Perfección en cada detalle, excelencia en cada servicio. Transformamos vehículos con pasión, calidad y compromiso para que siempre luzcan su mejor versión.</p>
    </div>
   </section><!-- Footer -->
   <footer class="border-t border-white/5 px-6 py-16">
    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
     <div>
-     <h4 id="footerBrand" class="text-2xl font-bold mb-4">Camilo Lavado<span class="text-electric">.</span></h4>
+     <h4 id="footerBrand" class="text-2xl font-bold mb-4">Brillo Supremo Detailing<span class="text-electric">.</span></h4>
      <p class="text-white/50 text-sm">Detailing premium a domicilio en Barcelona. Cuidamos tu vehículo como si fuera nuestro.</p>
     </div>
     <div>
@@ -379,16 +348,31 @@
      <h5 class="font-semibold mb-4 text-white/80">Contacto</h5>
      <ul class="text-white/50 text-sm space-y-2">
       <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-electric"></i> +34 697 217 781</li>
-      <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-electric"></i> info@camilolavado.com</li>
-      <li class="flex items-center gap-2"><i data-lucide="instagram" class="w-4 h-4 text-electric"></i> @camilolavado</li>
+      <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-electric"></i> brillosupremo@gmail.com</li>
+      <li class="flex items-center gap-2"><i data-lucide="instagram" class="w-4 h-4 text-electric"></i> @bsd.detailing19</li>
      </ul>
     </div>
    </div>
    <div class="max-w-6xl mx-auto mt-12 pt-8 border-t border-white/5 text-center text-white/30 text-sm">
-    © 2024 Camilo Lavado. Todos los derechos reservados.
+    © 2024 Brillo Supremo. Todos los derechos reservados.
    </div>
   </footer>
   <script>
+    // Header hide/show on scroll
+    let lastScrollY = 0;
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        // Scrolling up
+        header.style.transform = 'translateY(0)';
+      }
+      lastScrollY = currentScrollY;
+    });
+
     // Parallax effect
     window.addEventListener('scroll', () => {
       const parallaxBg = document.getElementById('parallaxBg');
@@ -430,8 +414,8 @@
       hero_title: 'Brillo supremo',
       hero_subtitle: 'Detailing profesional a domicilio en Barcelona y alrededores.',
       cta_text: 'Reservar Ahora',
-      whatsapp_number: 'https://w.app/mayndq',
-      company_name: 'Camilo Lavado',
+      whatsapp_number: 'https://wa.link/arr4os',
+      company_name: 'Brillo Supremo',
       background_color: '#121212',
       surface_color: '#1a1a1a',
       text_color: '#ffffff',
