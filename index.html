@@ -42,7 +42,7 @@
     .before-after-wrapper { position: relative; width: 100%; padding-bottom: 66.67%; }
     .before-after-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     .before-img { background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); }
-    .after-img { background: linear-gradient(135deg, #0d7a7f 0%, #00d2ff 100%); }
+    .after-img { background: linear-gradient(135deg, #0d7a7f 0%, #00d2ff 100%); clip-path: inset(0 0 0 100%); }
     .before-after-slider { position: absolute; top: 0; left: 50%; width: 4px; height: 100%; background: #00d2ff; cursor: col-resize; transform: translateX(-50%); z-index: 10; }
     .before-after-handle { position: absolute; top: 50%; left: 0; transform: translateY(-50%); width: 60px; height: 60px; background: #00d2ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-left: -30px; box-shadow: 0 4px 15px rgba(0,210,255,0.4); }
     .before-after-handle i { color: #121212; width: 24px; height: 24px; }
@@ -61,9 +61,7 @@
   <header id="siteHeader" class="fixed top-0 left-0 w-full z-40 bg-dark/80 backdrop-blur-md border-b border-white/5 transition-transform duration-300 ease-in-out">
    <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
     <div class="flex items-center gap-3">
-     <div class="w-[768px] h-56 bg-white/5 rounded flex items-center justify-center overflow-hidden">
-      <img id="siteLogo" src="logo marca.jpeg" alt="Logo" class="max-h-48 object-contain" />
-     </div>
+     <img id="siteLogo" src="logo marca.jpeg" alt="Logo" class="w-80 h-12 object-contain filter brightness-110" />
     </div>
     <nav class="hidden md:flex gap-4 items-center">
      <a href="#servicios" class="text-white/80 hover:text-white font-semibold">SERVICIOS</a>
@@ -130,28 +128,16 @@
    </div>
   </section><!-- Antes y Después -->
   <section class="px-6 py-20 max-w-6xl mx-auto">
-   <div class="text-center mb-14 fade-in">
+   <div class="text-center mb-10 fade-in">
     <h2 id="antes-despues" class="text-3xl md:text-5xl font-bold mb-4 font-montserrat">Antes y Después</h2>
-    <p class="text-gray-400 text-lg">Desliza para ver la transformación real de nuestros trabajos</p>
+    <p class="text-gray-400 text-lg max-w-2xl mx-auto">Resultados que hablan por sí solos: brillo, limpieza y protección en cada detalle.</p>
    </div>
-   <div class="flex justify-center fade-in">
-    <div class="before-after-container">
-     <div class="before-after-wrapper">
-      <div class="before-after-img before-img flex items-center justify-center">
-       <div class="text-center"><i data-lucide="image-off" class="w-12 h-12 text-gray-500 mx-auto mb-2"></i>
-        <p class="text-gray-400 text-sm">ANTES</p>
-       </div>
-      </div>
-      <div class="before-after-img after-img flex items-center justify-center">
-       <div class="text-center"><i data-lucide="sparkles" class="w-12 h-12 text-electric mx-auto mb-2"></i>
-        <p class="text-white text-sm">DESPUÉS</p>
-       </div>
-      </div>
-      <div class="before-after-slider" id="beaSlider">
-       <div class="before-after-handle"><i data-lucide="chevron-left"></i> <i data-lucide="chevron-right"></i>
-       </div>
-      </div>
-     </div>
+   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 fade-in">
+    <div class="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-surface shadow-[0_10px_40px_rgba(0,210,255,0.12)]">
+     <img src="resultado 1.jpeg" alt="Resultado 1" class="h-96 w-full object-contain transition duration-500 group-hover:scale-105" />
+    </div>
+    <div class="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-surface shadow-[0_10px_40px_rgba(0,210,255,0.12)]">
+     <img src="resultado 2.jpeg" alt="Resultado 2" class="h-96 w-full object-contain transition duration-500 group-hover:scale-105" />
     </div>
    </div>
   </section><!-- Servicios con Pestañas -->
@@ -312,11 +298,11 @@
      <p class="text-gray-400">Síguenos en nuestras redes sociales</p>
     </div>
     <div class="flex justify-center gap-8 fade-in">
-     <a href="https://www.instagram.com/bsd.detailing19?igsh=MXNxcmJ1YTkyMjlxMQ==" target="_blank" class="flex flex-col items-center gap-2">
+     <a href="https://www.instagram.com/brillo_suprem0?igsh=cHpvb2VnZmp5d2k=5" target="_blank" class="flex flex-col items-center gap-2">
       <i data-lucide="instagram" class="w-12 h-12 text-electric"></i>
       <span class="text-white/70">Instagram</span>
      </a>
-     <a href="https://www.tiktok.com/@brillo.supremo.de?_r=1&_t=ZS-97LlvouM1a6" target="_blank" class="flex flex-col items-center gap-2">
+     <a href="https://www.tiktok.com/@brillosuprem0.detailing?_r=1&_t=ZS-97WmTMEua7b" target="_blank" class="flex flex-col items-center gap-2">
       <svg class="w-12 h-12 text-electric" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M216 88.1a74.4 74.4 0 01-41.5-12.4v70.5a70.3 70.3 0 01-70.6 70.6A70.1 70.1 0 019.3 226.7V211a114.7 114.7 0 00105.5-115.3v-.9h22.6a74.6 74.6 0 004.6 93.3z"/></svg>
       <span class="text-white/70">TikTok</span>
      </a>
@@ -385,18 +371,33 @@
     // Before/After Slider
     const beaSlider = document.getElementById('beaSlider');
     const beaContainer = document.querySelector('.before-after-container');
+    const afterImg = document.querySelector('.after-img');
     let isDown = false;
 
-    beaSlider.addEventListener('mousedown', () => isDown = true);
-    document.addEventListener('mouseup', () => isDown = false);
-    document.addEventListener('mousemove', (e) => {
-      if (!isDown || !beaContainer) return;
-      const rect = beaContainer.getBoundingClientRect();
-      const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-      const percentage = (x / rect.width) * 100;
-      beaSlider.style.left = percentage + '%';
-      document.querySelector('.before-img').style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
-    });
+    const updateBeforeAfter = (percentage) => {
+      const clamped = Math.max(0, Math.min(100, percentage));
+      if (beaSlider) {
+        beaSlider.style.left = clamped + '%';
+      }
+      if (afterImg) {
+        afterImg.style.clipPath = `inset(0 0 0 ${100 - clamped}%)`;
+      }
+    };
+
+    if (beaSlider && beaContainer) {
+      beaSlider.addEventListener('mousedown', () => isDown = true);
+      document.addEventListener('mouseup', () => isDown = false);
+      document.addEventListener('mousemove', (e) => {
+        if (!isDown || !beaContainer) return;
+        const rect = beaContainer.getBoundingClientRect();
+        const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+        const percentage = (x / rect.width) * 100;
+        updateBeforeAfter(percentage);
+      });
+
+      updateBeforeAfter(0);
+      beaSlider.style.left = '50%';
+    }
 
     // Tab functionality
     document.querySelectorAll('.tab-button').forEach(button => {
