@@ -132,20 +132,32 @@
     <h2 id="antes-despues" class="text-3xl md:text-5xl font-bold mb-4 font-montserrat">Antes y Después</h2>
     <p class="text-gray-400 text-lg max-w-2xl mx-auto">Resultados que hablan por sí solos: brillo, limpieza y protección en cada detalle.</p>
    </div>
-   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 fade-in">
-    <div class="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-surface shadow-[0_10px_40px_rgba(0,210,255,0.12)]">
-     <img src="AD1.jpeg" alt="Resultado 1" class="h-96 w-full object-contain transition duration-500 group-hover:scale-105" />
+   <div class="relative group/carousel fade-in">
+    <!-- Contenedor de las imágenes -->
+    <div id="slider" class="flex overflow-x-scroll scroll-smooth snap-x snap-mandatory gap-6 scrollbar-none">
+      
+      <div class="min-w-full snap-center group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-surface shadow">
+        <img src="AD1.jpeg" alt="Resultado 1" class="h-96 w-full object-contain">
+      </div>
+      
+      <div class="min-w-full snap-center group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-surface shadow">
+        <img src="AD2.jpeg" alt="Resultado 2" class="h-96 w-full object-contain">
+      </div>
+  
+      <div class="min-w-full snap-center group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-surface shadow">
+        <img src="AD3.jpeg" alt="Resultado 3" class="h-96 w-full object-contain">
+      </div>
+  
+      <div class="min-w-full snap-center group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-surface shadow">
+        <img src="AD4.jpeg" alt="Resultado 4" class="h-96 w-full object-contain">
+      </div>
     </div>
-    <div class="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-surface shadow-[0_10px_40px_rgba(0,210,255,0.12)]">
-     <img src="AD2.jpeg" alt="Resultado 2" class="h-96 w-full object-contain transition duration-500 group-hover:scale-105" />
-    </div>
-    <div class="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-surface shadow-[0_10px_40px_rgba(0,210,255,0.12)]">
-      <img src="AD3.jpeg" alt="Resultado 2" class="h-96 w-full object-contain transition duration-500 group-hover:scale-105" />
-     </div>
-     <div class="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-surface shadow-[0_10px_40px_rgba(0,210,255,0.12)]">
-      <img src="AD4.jpeg" alt="Resultado 2" class="h-96 w-full object-contain transition duration-500 group-hover:scale-105" />
-     </div>
-   </div>
+  
+    <!-- Botones de Navegación -->
+    <button onclick="document.getElementById('slider').scrollBy({left: -document.getElementById('slider').offsetWidth, behavior: 'smooth'})" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70">❮</button>
+    <button onclick="document.getElementById('slider').scrollBy({left: document.getElementById('slider').offsetWidth, behavior: 'smooth'})" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70">❯</button>
+  </div>
+  
   </section><!-- Servicios con Pestañas -->
   <section class="px-6 py-20 max-w-6xl mx-auto">
    <div class="text-center mb-14 fade-in">
@@ -304,7 +316,7 @@
      <p class="text-gray-400">Síguenos en nuestras redes sociales</p>
     </div>
     <div class="flex justify-center gap-8 fade-in">
-     <a href="https://www.instagram.com/bsd.detailing19?igsh=MXNxcmJ1YTkyMjlxMQ==" target="_blank" class="flex flex-col items-center gap-2">
+     <a href="https://www.instagram.com/detailing.brillo_suprem0?igsh=cHpvb2VnZmp5d2k=" target="_blank" class="flex flex-col items-center gap-2">
       <i data-lucide="instagram" class="w-12 h-12 text-electric"></i>
       <span class="text-white/70">Instagram</span>
      </a>
