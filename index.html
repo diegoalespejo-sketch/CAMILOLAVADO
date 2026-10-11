@@ -6,6 +6,7 @@
   <title>Camilo Lavado</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
@@ -316,7 +317,7 @@
      <p class="text-gray-400">Síguenos en nuestras redes sociales</p>
     </div>
     <div class="flex justify-center gap-8 fade-in">
-     <a href="https://www.instagram.com/detailing.brillo_suprem0?igsh=cHpvb2VnZmp5d2k=" target="_blank" class="flex flex-col items-center gap-2">
+     <a href="https://www.instagram.com/brillo_suprem0?vrfl=cHpvb2VnZmp5d2k=" target="_blank" class="flex flex-col items-center gap-2">
       <i data-lucide="instagram" class="w-12 h-12 text-electric"></i>
       <span class="text-white/70">Instagram</span>
      </a>
@@ -484,25 +485,165 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+    const SUPABASE_URL = 'https://eygsrnivfjpqkzrcstgw.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_1xTm3XUTY6PqkChrtKs_cg_DryhFejc';
+    const LOCAL_STORAGE_KEY = 'brilloSupremoTestimonials';
+    const SUPABASE_CLIENT = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+    const DEFAULT_TESTIMONIALS = [
+      {
+        nombre: 'Marta G.',
+        comentario: 'Brillo supremo y servicio impecable. Mi coche nunca había quedado tan perfecto.'
+      },
+      {
+        nombre: 'Álex R.',
+        comentario: 'Servicio rápido y sin complicaciones. El acabado cerámico fue un antes y después total.'
+      }
+    ];
+
+    function createTestimonialCard(nombre, comentario) {
+      const card = document.createElement('div');
+      card.className = 'fade-in bg-surface border border-white/5 rounded-3xl p-8';
+
+      const header = document.createElement('div');
+      header.className = 'flex items-center gap-3 mb-4';
+
+      const avatar = document.createElement('div');
+      avatar.className = 'w-12 h-12 rounded-full bg-electric/10 flex items-center justify-center text-electric font-bold';
+      avatar.textContent = (nombre || 'C').charAt(0).toUpperCase();
+
+      const meta = document.createElement('div');
+      const title = document.createElement('h3');
+      title.className = 'text-xl font-semibold';
+      title.textContent = nombre || 'Cliente';
+      const subtitle = document.createElement('p');
+      subtitle.className = 'text-sm text-white/50';
+      subtitle.textContent = 'Cliente satisfecho';
+      meta.appendChild(title);
+      meta.appendChild(subtitle);
+
+      header.appendChild(avatar);
+      header.appendChild(meta);
+
+      const body = document.createElement('p');
+      body.className = 'text-gray-300';
+      body.textContent = comentario || '';
+
+      card.appendChild(header);
+      card.appendChild(body);
+      return card;
+    }
+
+    function getStoredTestimonials() {
+      try {
+        const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function storeTestimonials(item) {
+      const stored = getStoredTestimonials();
+      stored.unshift(item);
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(stored.slice(0, 20)));
+    }
+
+    function renderTestimonials(items) {
+      const testimonialList = document.getElementById('testimonialList');
+      if (!testimonialList) return;
+
+      testimonialList.innerHTML = '';
+      items.forEach(item => {
+        const card = createTestimonialCard(item.nombre || 'Cliente', item.comentario || item.text || '');
+        testimonialList.appendChild(card);
+        observer.observe(card);
+      });
+    }
+
+    async function loadTestimonials() {
+      const testimonialList = document.getElementById('testimonialList');
+      if (!testimonialList) return;
+
+      if (SUPABASE_CLIENT) {
+        try {
+          const { data, error } = await SUPABASE_CLIENT
+            .from('TESTIMONIOS')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+          if (!error && Array.isArray(data) && data.length > 0) {
+            renderTestimonials(data.map(item => ({
+              nombre: item.nombre || 'Cliente',
+              comentario: item.comentario || item.text || ''
+            })));
+            return;
+          }
+
+          if (error) {
+            console.warn('Supabase no disponible o la tabla no existe:', error.message || error);
+          }
+        } catch (error) {
+          console.warn('Error cargando testimonios desde Supabase:', error);
+        }
+      }
+
+      const savedTestimonials = getStoredTestimonials();
+      if (savedTestimonials.length > 0) {
+        renderTestimonials(savedTestimonials);
+        return;
+      }
+
+      renderTestimonials(DEFAULT_TESTIMONIALS);
+    }
+
     const testimonialForm = document.getElementById('testimonialForm');
-    testimonialForm?.addEventListener('submit', (event) => {
+    testimonialForm?.addEventListener('submit', async (event) => {
       event.preventDefault();
       const nameInput = document.getElementById('testimonialName');
       const textInput = document.getElementById('testimonialText');
+      const submitButton = testimonialForm.querySelector('button[type="submit"]');
       const name = nameInput?.value.trim();
       const text = textInput?.value.trim();
+
       if (!name || !text) return;
+
+      const payload = { nombre: name, comentario: text };
       const testimonialList = document.getElementById('testimonialList');
-      if (!testimonialList) return;
-      const card = document.createElement('div');
-      card.className = 'fade-in bg-surface border border-white/5 rounded-3xl p-8';
-      card.innerHTML = `<div class="flex items-center gap-3 mb-4"><div class="w-12 h-12 rounded-full bg-electric/10 flex items-center justify-center text-electric font-bold">${name.charAt(0).toUpperCase()}</div><div><h3 class="text-xl font-semibold">${name}</h3><p class="text-sm text-white/50">Cliente satisfecho</p></div></div><p class="text-gray-300">${text}</p>`;
-      testimonialList.appendChild(card);
-      observer.observe(card);
-      if (nameInput) nameInput.value = '';
-      if (textInput) textInput.value = '';
+      if (testimonialList) {
+        const card = createTestimonialCard(name, text);
+        testimonialList.prepend(card);
+        observer.observe(card);
+      }
+
+      storeTestimonials(payload);
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Guardando...';
+
+      try {
+        if (SUPABASE_CLIENT) {
+          const { error } = await SUPABASE_CLIENT
+            .from('TESTIMONIOS')
+            .insert([payload]);
+
+          if (error) {
+            console.error('Error guardando en Supabase:', error.message || error);
+          }
+        }
+
+        if (nameInput) nameInput.value = '';
+        if (textInput) textInput.value = '';
+      } catch (error) {
+        console.error('Error enviando reseña:', error);
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Enviar reseña';
+      }
     });
 
+    document.addEventListener('DOMContentLoaded', loadTestimonials);
     lucide.createIcons();
   </script>
  </body>
